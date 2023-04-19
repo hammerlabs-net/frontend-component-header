@@ -1,42 +1,18 @@
-import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+
 import Responsive from 'react-responsive';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
-import { AppContext } from '@edx/frontend-platform/react';
-import {
-  APP_CONFIG_INITIALIZED,
-  ensureConfig,
-  mergeConfig,
-  getConfig,
-  subscribe,
-} from '@edx/frontend-platform';
 
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 
 import messages from './Header.messages';
 
-ensureConfig([
-  'LMS_BASE_URL',
-  'LOGOUT_URL',
-  'LOGIN_URL',
-  'SITE_NAME',
-  'LOGO_URL',
-  'ORDER_HISTORY_URL',
-], 'Header component');
-
-subscribe(APP_CONFIG_INITIALIZED, () => {
-  mergeConfig({
-    AUTHN_MINIMAL_HEADER: !!process.env.AUTHN_MINIMAL_HEADER,
-  }, 'Header additional config');
-});
-
-const Header = ({ intl }) => {
-  const { authenticatedUser, config } = useContext(AppContext);
-
+const Header = ({ intl, authenticatedUser, config }) => {
   const mainMenu = [
     {
-      type: 'item',
-      href: `${config.LMS_BASE_URL}/dashboard`,
+      type: 'link',
+      href: '/dashboard',
       content: intl.formatMessage(messages['header.links.courses']),
     },
   ];
@@ -50,7 +26,7 @@ const Header = ({ intl }) => {
   const userMenu = authenticatedUser === null ? [] : [
     {
       type: 'item',
-      href: `${config.LMS_BASE_URL}/dashboard`,
+      href: `${config.BASE_URL}/dashboard`,
       content: intl.formatMessage(messages['header.user.menu.dashboard']),
     },
     {
@@ -91,13 +67,13 @@ const Header = ({ intl }) => {
   const props = {
     logo: config.LOGO_URL,
     logoAltText: config.SITE_NAME,
-    logoDestination: `${config.LMS_BASE_URL}/dashboard`,
+    logoDestination: '/dashboard',
     loggedIn: authenticatedUser !== null,
     username: authenticatedUser !== null ? authenticatedUser.username : null,
     avatar: authenticatedUser !== null ? authenticatedUser.avatar : null,
-    mainMenu: getConfig().AUTHN_MINIMAL_HEADER ? [] : mainMenu,
-    userMenu: getConfig().AUTHN_MINIMAL_HEADER ? [] : userMenu,
-    loggedOutItems: getConfig().AUTHN_MINIMAL_HEADER ? [] : loggedOutItems,
+    mainMenu: config.AUTHN_MINIMAL_HEADER ? [] : mainMenu,
+    userMenu: config.AUTHN_MINIMAL_HEADER ? [] : userMenu,
+    loggedOutItems: config.AUTHN_MINIMAL_HEADER ? [] : loggedOutItems,
   };
 
   return (
@@ -114,6 +90,15 @@ const Header = ({ intl }) => {
 
 Header.propTypes = {
   intl: intlShape.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  authenticatedUser: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  config: PropTypes.object.isRequired,
+};
+
+Header.defaultProps = {
+  authenticatedUser: null,
+
 };
 
 export default injectIntl(Header);

@@ -1,8 +1,20 @@
 import Header from './Header';
-import LearningHeader from './learning-header/LearningHeader';
 import messages from './i18n/index';
-import StudioHeader from './StudioHeader';
 
-export { LearningHeader, messages, StudioHeader };
+export function setup(piralApi) {
+  piralApi.mergeConfig(
+    {
+      AUTHN_MINIMAL_HEADER: !!process.env.AUTHN_MINIMAL_HEADER,
+    },
+    'Header Config',
+  );
 
-export default Header;
+  piralApi.mergeMessages(messages);
+  piralApi.registerExtension('openedx-header', () => (
+    <Header
+      config={piralApi.getConfig()}
+      authenticatedUser={piralApi.getAuthenticatedUser()}
+    />
+  ));
+}
+export { messages };

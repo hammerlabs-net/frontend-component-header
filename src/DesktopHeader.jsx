@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { getConfig } from '@edx/frontend-platform';
@@ -38,6 +39,11 @@ class DesktopHeader extends React.Component {
       if (type === 'item') {
         return (
           <a key={`${type}-${content}`} className="nav-link" href={href}>{content}</a>
+        );
+      }
+      if (type === 'link') {
+        return (
+          <Link to={href}>{content}</Link>
         );
       }
 
@@ -122,7 +128,9 @@ class DesktopHeader extends React.Component {
       intl,
       appMenu,
     } = this.props;
-    const logoProps = { src: logo, alt: logoAltText, href: logoDestination };
+    const logoProps = {
+      src: logo, alt: logoAltText, href: logoDestination, type: 'link',
+    };
     const logoClasses = getConfig().AUTHN_MINIMAL_HEADER ? 'mw-100' : null;
 
     return (
