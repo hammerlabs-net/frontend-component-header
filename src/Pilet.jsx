@@ -1,0 +1,20 @@
+import * as React from 'react';
+
+import Header from './Header';
+
+const piletSpec = {
+  name: 'openEdx Header',
+  version: '1.0.0',
+  spec: 'v2',
+  dependencies: {},
+  config: {},
+  basePath: '/pilets',
+  setup(piralApi) {
+    piralApi.registerExtension('openedx-header', () => (
+      <Header />
+    ));
+  },
+
+};
+
+export default piletSpec;
