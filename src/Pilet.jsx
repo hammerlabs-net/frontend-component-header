@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import Header from './Header';
+import messages from './i18n/index';
 
 const piletSpec = {
   name: 'openEdx Header',
@@ -10,6 +11,7 @@ const piletSpec = {
   config: {},
   basePath: '/pilets',
   setup(piralApi) {
+    piralApi.mergeMessages(messages);
     piralApi.registerExtension('openedx-header', () => (
       <Header />
     ));
