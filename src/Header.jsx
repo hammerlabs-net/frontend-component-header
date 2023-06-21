@@ -1,38 +1,14 @@
-import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+
 import Responsive from 'react-responsive';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
-import { AppContext } from '@edx/frontend-platform/react';
-import {
-  APP_CONFIG_INITIALIZED,
-  ensureConfig,
-  mergeConfig,
-  getConfig,
-  subscribe,
-} from '@edx/frontend-platform';
 
 import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 
 import messages from './Header.messages';
 
-ensureConfig([
-  'LMS_BASE_URL',
-  'LOGOUT_URL',
-  'LOGIN_URL',
-  'SITE_NAME',
-  'LOGO_URL',
-  'ORDER_HISTORY_URL',
-], 'Header component');
-
-subscribe(APP_CONFIG_INITIALIZED, () => {
-  mergeConfig({
-    AUTHN_MINIMAL_HEADER: !!process.env.AUTHN_MINIMAL_HEADER,
-  }, 'Header additional config');
-});
-
-const Header = ({ intl }) => {
-  const { authenticatedUser, config } = useContext(AppContext);
-
+const Header = ({ intl, authenticatedUser, config }) => {
   const mainMenu = [
     {
       type: 'link',
@@ -95,9 +71,9 @@ const Header = ({ intl }) => {
     loggedIn: authenticatedUser !== null,
     username: authenticatedUser !== null ? authenticatedUser.username : null,
     avatar: authenticatedUser !== null ? authenticatedUser.avatar : null,
-    mainMenu: getConfig().AUTHN_MINIMAL_HEADER ? [] : mainMenu,
-    userMenu: getConfig().AUTHN_MINIMAL_HEADER ? [] : userMenu,
-    loggedOutItems: getConfig().AUTHN_MINIMAL_HEADER ? [] : loggedOutItems,
+    mainMenu: config.AUTHN_MINIMAL_HEADER ? [] : mainMenu,
+    userMenu: config.AUTHN_MINIMAL_HEADER ? [] : userMenu,
+    loggedOutItems: config.AUTHN_MINIMAL_HEADER ? [] : loggedOutItems,
   };
 
   return (
@@ -114,6 +90,14 @@ const Header = ({ intl }) => {
 
 Header.propTypes = {
   intl: intlShape.isRequired,
+  authenticatedUser: {},
+  // eslint-disable-next-line react/forbid-prop-types
+  config: PropTypes.object.isRequired,
+};
+
+Header.defaultProps = {
+  authenticatedUser: null,
+
 };
 
 export default injectIntl(Header);
