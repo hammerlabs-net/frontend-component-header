@@ -6,7 +6,7 @@ export function setup(piralApi) {
     {
       AUTHN_MINIMAL_HEADER: !!process.env.AUTHN_MINIMAL_HEADER,
     },
-    'Header additional config',
+    'Header Config',
   );
 
   piralApi.mergeMessages(messages);
