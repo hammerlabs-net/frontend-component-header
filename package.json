@@ -84,7 +84,7 @@
     "react-transition-group": "4.4.5"
   },
   "peerDependencies": {
-    "@edx/paragon": "20.30.1",
+    "@edx/paragon": "^20.30.1",
     "react": "^16.9.0 || ^17.0.0",
     "react-dom": "^16.9.0 || ^17.0.0",
     "react-router-dom": "5.3.4"
