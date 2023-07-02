@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom';
 
 const Logo = ({ src, alt, ...attributes }) => (
   <img src={src} alt={alt} {...attributes} />

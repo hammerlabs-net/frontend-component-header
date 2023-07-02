@@ -22,12 +22,6 @@
   "piral": {
     "name": "frontend-app-shell"
   },
-  "importmap": {
-    "imports": {},
-    "inherit": [
-      "frontend-app-shell"
-    ]
-  },
   "files": [
     "/dist"
   ],
@@ -47,8 +41,6 @@
   },
   "homepage": "https://github.com/openedx/frontend-component-header#readme",
   "devDependencies": {
-    "@edx/brand": "npm:@edx/brand-openedx@1.2.0",
-    "@edx/browserslist-config": "^1.1.1",
     "@edx/frontend-build": "file:../frontend-build",
     "@edx/reactifex": "^2.1.1",
     "@testing-library/dom": "9.2.0",
@@ -63,16 +55,12 @@
     "piral-cli": "1.0.1",
     "piral-cli-webpack5": "1.0.1",
     "prop-types": "15.8.1",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
-    "react-redux": "7.2.9",
-    "react-router-dom": "5.3.4",
+    "react-redux": "8.1.1",
     "react-test-renderer": "16.14.0",
     "redux": "4.2.1",
     "redux-saga": "1.2.3"
   },
   "dependencies": {
-    "@edx/frontend-platform": "file:../frontend-platform/dist",
     "@fortawesome/fontawesome-svg-core": "6.3.0",
     "@fortawesome/free-brands-svg-icons": "6.3.0",
     "@fortawesome/free-regular-svg-icons": "6.3.0",
@@ -84,6 +72,9 @@
     "react-transition-group": "4.4.5"
   },
   "peerDependencies": {
+    "@edx/frontend-platform": "file:../frontend-platform/dist",
+    "@edx/brand": "npm:@edx/brand-openedx@1.2.0",
+    "@edx/browserslist-config": "^1.1.1",
     "@edx/paragon": "^20.30.1",
     "react": "^16.9.0 || ^17.0.0",
     "react-dom": "^16.9.0 || ^17.0.0",

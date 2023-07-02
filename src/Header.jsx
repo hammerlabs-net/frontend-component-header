@@ -90,7 +90,8 @@ const Header = ({ intl, authenticatedUser, config }) => {
 
 Header.propTypes = {
   intl: intlShape.isRequired,
-  authenticatedUser: {},
+  // eslint-disable-next-line react/forbid-prop-types
+  authenticatedUser: PropTypes.func,
   // eslint-disable-next-line react/forbid-prop-types
   config: PropTypes.object.isRequired,
 };
