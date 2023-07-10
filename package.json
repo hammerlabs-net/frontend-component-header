@@ -1,6 +1,6 @@
 {
   "name": "@edx/frontend-component-header",
-  "version": "1.0.0-semantically-released",
+  "version": "1.0.0-alpha",
   "description": "The standard header for Open edX",
   "main": "dist/index.js",
   "publishConfig": {
@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/openedx/frontend-component-header#readme",
   "devDependencies": {
-    "@edx/frontend-build": "file:../frontend-build",
+    "@edx/frontend-build": "npm:@hammerlabs-net/frontend-build@1.0.0-alpha",
     "@edx/reactifex": "^2.1.1",
     "@testing-library/dom": "9.2.0",
     "@testing-library/jest-dom": "5.16.5",
@@ -72,10 +72,10 @@
     "react-transition-group": "4.4.5"
   },
   "peerDependencies": {
-    "@edx/frontend-platform": "file:../frontend-platform/dist",
+    "@edx/frontend-platform": "npm:@hammerlabs-net/frontend-platform@1.0.0-alpha",
+    "@edx/paragon": "npm:@hammerlabs-net/paragon@1.0.0-alpha",
     "@edx/brand": "npm:@edx/brand-openedx@1.2.0",
     "@edx/browserslist-config": "^1.1.1",
-    "@edx/paragon": "^20.30.1",
     "react": "^16.9.0 || ^17.0.0",
     "react-dom": "^16.9.0 || ^17.0.0",
     "react-router-dom": "5.3.4"
