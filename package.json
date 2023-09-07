@@ -12,6 +12,8 @@
   "scripts": {
     "build": "pilet build",
     "start": "pilet debug",
+    "package": "pilet package",
+    "publish": "pilet build && pilet package && pilet publish",
     "upgrade": "pilet upgrade",
     "i18n_extract": "BABEL_ENV=i18n fedx-scripts babel src --quiet > /dev/null",
     "lint": "fedx-scripts eslint --ext .js --ext .jsx .",
@@ -23,7 +25,7 @@
     "name": "frontend-app-shell"
   },
   "files": [
-    "/dist"
+    "./dist"
   ],
   "husky": {
     "hooks": {
@@ -60,11 +62,6 @@
     "redux-saga": "1.2.3"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "6.4.2",
-    "@fortawesome/free-brands-svg-icons": "6.4.2",
-    "@fortawesome/free-regular-svg-icons": "6.4.2",
-    "@fortawesome/free-solid-svg-icons": "6.4.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "axios-mock-adapter": "1.21.5",
     "babel-polyfill": "6.26.0",
     "react-redux": "8.1.1",
@@ -72,6 +69,11 @@
     "react-transition-group": "4.4.5"
   },
   "peerDependencies": {
+    "@fortawesome/fontawesome-svg-core": "6.4.2",
+    "@fortawesome/free-brands-svg-icons": "6.4.2",
+    "@fortawesome/free-regular-svg-icons": "6.4.2",
+    "@fortawesome/free-solid-svg-icons": "6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@edx/frontend-platform": "^5.3.0",
     "@edx/browserslist-config": "^1.2.0",
     "@edx/paragon": "^21.1.2",

@@ -9,3 +9,5 @@ module.config.js
 .idea/
 
 .vscode
+.piralrc
+**/edx-frontend-component-header*.tgz
